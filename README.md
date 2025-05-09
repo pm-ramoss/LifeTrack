@@ -28,7 +28,7 @@ Built with React + Vite, styled using Tailwind CSS v4.1, powered by Firebase.
 > Make sure you have **Node.js 18+** and **npm** installed.
 
 ```bash
-git clone https://github.com/seu-usuario/LifeTrack.git
+git clone https://github.com/pm-ramoss/LifeTrack.git
 cd LifeTrack
 npm install
 ```
@@ -102,7 +102,7 @@ This project is licensed under the **Personal Use Only License**:
 
 ## 📸 Screenshots
 
-_Add screenshots of your UI here in the future_
+_future UI screenshots_
 
 ---
 
