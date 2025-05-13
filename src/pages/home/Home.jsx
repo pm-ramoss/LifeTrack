@@ -41,16 +41,22 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-4">
-        Hello, {userName}! <span className="inline-block animate-bounce">🌎</span>
-      </h1>
-      <button
-        onClick={handleLogout}
-        className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded shadow cursor-pointer"
-      >
-        Logout
-      </button>
-    </div>
+    <main className="flex flex-col h-screen bg-[#06242E] overflow-auto">
+      <header className="w-full flex flex-row justify-between items-center h-[15%] bg-[#1fb181] shadow-lg shadow-[#1fb1804a] px-5">
+        <p>Logo</p>
+        <div className="w-fit h-fit flex flex-col items-center justify-center">
+          <p className="font-bold mb-4">
+            Hello, {userName}! <span className="inline-block animate-bounce">🌎</span>
+          </p>
+          <button
+            onClick={handleLogout}
+            className="text-[#06242e] px-6 py-2 rounded-lg border-4 border-[#06242e] bg-transparent shadow cursor-pointer font-bold"
+          >
+            Logout
+          </button>
+        </div>
+      </header>
+      
+    </main>
   );
 }
