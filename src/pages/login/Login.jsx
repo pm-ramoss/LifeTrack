@@ -1,8 +1,8 @@
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from '../../firebase';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { useState } from "react";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, getAuth } from "firebase/auth";
+import { useEffect, useState } from "react";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { IoMdEyeOff, IoMdEye } from "react-icons/io";
 
@@ -31,28 +31,42 @@ export default function Login() {
     }
   };
 
-const handleRegister = async (e) => {
-  e.preventDefault();
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-    const userDocRef = doc(collection(db, "users"));
-    const docID = userDocRef.id;
+      const userDocRef = doc(collection(db, "users"));
+      const docID = userDocRef.id;
 
-    await setDoc(userDocRef, {
-      id: docID,
-      name: name,
-      email: user.email,
+      await setDoc(userDocRef, {
+        id: docID,
+        name: name,
+        email: user.email,
+      });
+
+      setRegisterOpen(false);
+      alert("Successfully signed up!");
+    } catch (err) {
+      console.error(err);
+      alert("Sign up error!");
+    }
+  };
+
+  
+  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("/home", { replace: true });
+      } else {
+        return;
+      }
     });
 
-    setRegisterOpen(false);
-    alert("Successfully signed up!");
-  } catch (err) {
-    console.error(err);
-    alert("Sign up error!");
-  }
-};
+    return () => unsubscribe();
+  }, [auth, navigate]);
 
   return (
     <main className="w-screen h-screen overflow-hidden flex items-center justify-center bg-radial from-[#28B485] to-[#06242E]">

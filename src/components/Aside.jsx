@@ -10,9 +10,9 @@ const Aside = () => {
   return (
     <aside onMouseEnter={() => {setIsHover(true)}} onMouseLeave={() => {setIsHover(false)}} 
            className={`${isHover? 
-            'w-[12%] bg-[#06242E]' : 
-            'w-fit bg-transparent'
-            } h-[95%] p-3 rounded-lg duration-500 cursor-pointer`}
+            'bg-[#06242E]' : 
+            'bg-transparent'
+            } w-fit h-[95%] py-3 px-6 rounded-lg duration-500 cursor-pointer shrink-0`}
     >
       <main className={`w-full h-full flex flex-col ${isHover? 'justify-between' : 'justify-start gap-6'}`}>
         <nav className='w-full h-fit flex flex-col items-start justify-start gap-6'>
