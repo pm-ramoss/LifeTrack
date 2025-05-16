@@ -10,6 +10,19 @@ const Header = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -44,7 +57,7 @@ const Header = () => {
 
   return (
     <header className="w-full flex flex-row justify-between items-center max-h-[15%] bg-[#06242E] px-5">
-      <img src={logo} alt="logo" className="h-full w-auto"/>
+      <img src={logo} alt="logo" className={`${isMobile? 'h-[60%]' : 'h-full'} w-auto`} />
       <div className="w-fit h-fit flex flex-col items-center justify-center">
         <p className="font-bold mb-4 text-[#1fb181]">
           Hello, {userName}! <span className="inline-block animate-bounce">🌎</span>
