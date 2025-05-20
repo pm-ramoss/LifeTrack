@@ -27,7 +27,7 @@ export default function ProtectedRoute({ children }) {
               height: 80
             },
             style: {
-              fill: '#5470c6'
+              fill: '#29b786'
             },
             keyframeAnimation: {
               duration: 150,
